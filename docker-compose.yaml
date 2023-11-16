@@ -31,6 +31,25 @@ services:
       - dbdata:/data/db
     networks:
       - backend
+  mirror:
+    depends_on:
+      - db
+    image: brandmonks/wavdio-mirror
+    networks:
+      - backend
+      - frontend
+    environment:
+      - SSH_USER=${SSH_USER}
+      - SSH_PORT=${SSH_PORT}
+      - SSH_HOST=${SSH_HOST}
+      - SSH_PRIVATE_KEY=${SSH_PRIVATE_KEY}
+      - SSH_PUBLIC_KEY=${SSH_PUBLIC_KEY}
+      - SSH_KNOWN_HOSTS=${SSH_KNOWN_HOSTS}
+      - MONGO_CONNECTION_STRING_LIVE=${MONGO_CONNECTION_STRING_LIVE}
+      - MONGO_USER=${MONGO_USER}
+      - MONGO_PASSWORD=${MONGO_PASSWORD}
+    volumes:
+      - backenddata1:/app/uploads
 volumes:
   dbdata:
   backenddata1:
