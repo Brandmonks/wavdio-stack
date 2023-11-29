@@ -2,3 +2,6 @@
 /wavdio-express/
 /wavdio-angular/
 /wavdio-mirror/
+
+# OS specific files
+.DS_Store
